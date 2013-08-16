@@ -144,7 +144,7 @@ namespace What2Cook
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

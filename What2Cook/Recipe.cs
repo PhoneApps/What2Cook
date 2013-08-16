@@ -8,21 +8,25 @@ namespace What2Cook
 {
     public class Recipe
     {
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public string Cusine { get; private set; }
+        public string Cusine { get; set; }
 
-        public DateTime Date { get; private set; }
+        public DateTime Date { get; set; }
 
-        public string MealTime { get; private set; }
+        public string MealTime { get; set; }
         
-        public string Comments { get; private set; }
+        public string Comments { get; set; }
 
-        public bool IsFavorite { get; private set; }
+        public bool IsFavorite { get; set; }
 
         public int CookCount;
 
         public int SuggestCount;
+
+        public Recipe()
+        {
+        }
 
         public Recipe(string name, string cusine, DateTime date, string mealTime, string comments, bool isFavorite, int cookCount, int suggestCount)
         {

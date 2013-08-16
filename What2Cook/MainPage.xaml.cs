@@ -13,6 +13,8 @@ namespace What2Cook
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        public static Recipe SelectedRecipe;
+
         // Constructor
         public MainPage()
         {
@@ -41,11 +43,6 @@ namespace What2Cook
         private void AddRecipeButton_Click(object sender, EventArgs e)
         {
             this.NavigationService.Navigate(new Uri(Constants.AddRecipePage + "?Action=Add Recipe", UriKind.Relative));
-        }
-
-        private void Recipes_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("/RecipesList.xaml", UriKind.Relative));
         }
 
         private void RecipeList_tap(object sender, System.Windows.Input.GestureEventArgs e)

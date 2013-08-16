@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "What2Cook", "What2Cook\What2Cook.csproj", "{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{008983C3-21E7-44E9-BE1A-E6DD7107EF52}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Debug|ARM.ActiveCfg = Debug|ARM
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Debug|ARM.Build.0 = Debug|ARM
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Debug|ARM.Deploy.0 = Debug|ARM
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Debug|x86.ActiveCfg = Debug|x86
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Debug|x86.Build.0 = Debug|x86
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Debug|x86.Deploy.0 = Debug|x86
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Release|ARM.ActiveCfg = Release|ARM
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Release|ARM.Build.0 = Release|ARM
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Release|ARM.Deploy.0 = Release|ARM
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Release|x86.ActiveCfg = Release|x86
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Release|x86.Build.0 = Release|x86
+		{FBC85BF4-CFDC-4B02-AC3C-8EF455576594}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

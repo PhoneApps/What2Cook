@@ -50,9 +50,22 @@ namespace What2Cook
             this.NavigationService.Navigate(new Uri(string.Format("/RecipeDetailsPage.xaml?RecipeName={0}", ((TextBlock)e.OriginalSource).Text), UriKind.Relative));
         }
 
-        private void RecipeList_hold(object sender, System.Windows.Input.GestureEventArgs e)
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
+            var item = (sender as MenuItem).DataContext as string;
+            switch ((string)((MenuItem)sender).Header)
+            {
+                case "delete recipe":
+                    var currRecipe = RecipeListSelector.SelectedItem as string;
+                    Recipes.DeleteRecipe(currRecipe);
+                    break;
+                case "edit recipe": 
+                    
+                    break;
 
+                case "add to favorites": 
+                    break;
+            }
         }
 
         // Sample code for building a localized ApplicationBar

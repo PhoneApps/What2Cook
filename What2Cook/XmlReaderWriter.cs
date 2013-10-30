@@ -47,6 +47,28 @@ namespace What2Cook
             WriteToFile(recipeFile, xmlBuilder.ToString());           
         }
 
+        public static void ReadRecipeFile(string recipeFilePath)
+        {
+            string xmlData = ReadFromFile(recipeFilePath);
+
+            using (XmlReader reader = XmlReader.Create(new StringReader(xmlData)))
+            {
+                // Parse the file and display each of the nodes.
+                while (reader.Read())
+                {
+                    switch (reader.NodeType)
+                    {
+                        case XmlNodeType.Element:
+                            if (reader.Name.Equals("Recipe"))
+                            {
+                                ReadRecipe(reader);
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+
         public static void ReadRecipeFile(StorageFile recipeFile)
         {
             do
@@ -149,6 +171,27 @@ namespace What2Cook
             }
         }
 
+        private static string ReadFromFile(string recipeFilePath)
+        {
+            string fileContents;
+
+            try
+            {
+                using (FileStream fs = File.OpenRead(recipeFilePath))
+                {
+                    using (StreamReader reader = new StreamReader(fs))
+                    {
+                        fileContents = reader.ReadToEnd();
+                        return fileContents;
+                    }                    
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         private static async void WriteToFile(StorageFile recipeFile, string data)
         {
             try
@@ -172,6 +215,6 @@ namespace What2Cook
             {
                 throw ex;
             }            
-        }            
+        }        
     }
 }

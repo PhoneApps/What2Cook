@@ -25,7 +25,7 @@ namespace What2Cook
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            Dictionary<string, Recipe> RecipeList = Recipes.GetRecipeList();
+            SortedDictionary<string, Recipe> RecipeList = Recipes.GetRecipeList();
             List<String> stringsList = new List<string>();
             foreach (var item in RecipeList.Keys)
             {
@@ -33,6 +33,11 @@ namespace What2Cook
             }
 
             RecipeListSelector.ItemsSource = stringsList;            
+        }
+
+        private void LoadInitialRecipies()
+        {
+            throw new NotImplementedException();
         } 
 
         private void SettingsButton_Click(object sender, EventArgs e)

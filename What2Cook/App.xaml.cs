@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
@@ -68,8 +67,24 @@ namespace What2Cook
             try
             {
                 StorageFolder appFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("What2Cook", CreationCollisionOption.OpenIfExists);
-                RecipeFile = await appFolder.CreateFileAsync(Constants.RecipesFileName, CreationCollisionOption.OpenIfExists);
-                XmlReaderWriter.ReadRecipeFile(App.RecipeFile);
+                bool isFilePresent = false;
+                try
+                {
+                    RecipeFile = await appFolder.CreateFileAsync(Constants.RecipesFileName, CreationCollisionOption.FailIfExists);
+                    XmlReaderWriter.ReadRecipeFile("Data\\Recipes.xml");
+                    XmlReaderWriter.UpdateRecipeFile(RecipeFile);
+                }
+                catch(Exception)
+                {
+                    isFilePresent = true;                    
+                }
+
+                if (isFilePresent)
+                {
+                    RecipeFile = await appFolder.CreateFileAsync(Constants.RecipesFileName, CreationCollisionOption.OpenIfExists);
+                }
+
+                XmlReaderWriter.ReadRecipeFile(RecipeFile);
             }
             catch (XmlException ex)
             {

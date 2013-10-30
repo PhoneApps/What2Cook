@@ -1,4 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Recipes>
-  
+  <Recipe Name="Falafel" Cusine="Mediterranean" Date="10/28/2013 12:00:00 AM" Time="Dinner" Comments="" IsFavorite="true" CookCount="0" SuggestCount="0" />
+  <Recipe Name="Burger" Cusine="American" Date="10/28/2013 12:00:00 AM" Time="Breakfast" Comments="" IsFavorite="true" CookCount="0" SuggestCount="0" />
+  <Recipe Name="Paav bhaji" Cusine="Indian" Date="10/28/2013 12:00:00 AM" Time="Lunch" Comments="" IsFavorite="true" CookCount="0" SuggestCount="0" />
+  <Recipe Name="Pasta" Cusine="Italian" Date="10/28/2013 12:00:00 AM" Time="Breakfast" Comments="" IsFavorite="true" CookCount="0" SuggestCount="0" />
+  <Recipe Name="Pizza" Cusine="Italian" Date="10/28/2013 12:00:00 AM" Time="Dinner" Comments="" IsFavorite="false" CookCount="0" SuggestCount="0" />
 </Recipes>

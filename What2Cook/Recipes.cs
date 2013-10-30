@@ -8,7 +8,7 @@ namespace What2Cook
 {
     public class Recipes
     {
-        private static Dictionary<string, Recipe> RecipeList;
+        private static SortedDictionary<string, Recipe> RecipeList;
 
         public static void AddRecipe(Recipe recipe)
         {
@@ -66,11 +66,11 @@ namespace What2Cook
             return recipe;
         }
 
-        public static Dictionary<string, Recipe> GetRecipeList()
+        public static SortedDictionary<string, Recipe> GetRecipeList()
         {
             if (RecipeList == null)
             {
-                RecipeList = new Dictionary<string, Recipe>();
+                RecipeList = new SortedDictionary<string, Recipe>();
             }
 
             return RecipeList;

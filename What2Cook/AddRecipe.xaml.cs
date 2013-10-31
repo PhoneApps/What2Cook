@@ -16,7 +16,7 @@ namespace What2Cook
     public partial class AddRecipe : PhoneApplicationPage
     {
         private static string action;
-        
+
         private static bool navigateToDateSelector = false;
 
         public AddRecipe()
@@ -26,21 +26,34 @@ namespace What2Cook
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            string selectedRecipe = null;
+            Recipe recipe = null;
             if (this.NavigationContext.QueryString.ContainsKey(Constants.ActionParameter))
             {
                 action = this.NavigationContext.QueryString[Constants.ActionParameter];
             }
-
+            if (this.NavigationContext.QueryString.ContainsKey(Constants.RecipeNameParameter))
+            {
+                selectedRecipe = this.NavigationContext.QueryString[Constants.RecipeNameParameter];
+            }
             MealListPicker.ItemsSource = Constants.MealTimings;
             MealListPicker.SelectionChanged += MealListPicker_SelectionChanged;
             MealListPicker.Tap += MealListPicker_Tap;
-            
-            if (MainPage.SelectedRecipe == null)
+            if (action == Constants.EditRecipe)
             {
-                MainPage.SelectedRecipe = new Recipe();
+                recipe = Recipes.GetRecipe(selectedRecipe);
+                MainPage.SelectedRecipe = recipe;
             }
-
-            SetUIElements();                 
+            else if (action == Constants.AddRecipe && MainPage.SelectedRecipe != null)
+            {
+                recipe = MainPage.SelectedRecipe;
+            }
+            else
+            {
+                recipe = MainPage.SelectedRecipe;
+            }
+            
+            SetUIElements(recipe);                 
         }
 
         private void MealListPicker_Tap(object sender, SelectionChangedEventArgs e)
@@ -94,23 +107,23 @@ namespace What2Cook
             this.NavigationService.Navigate(new Uri(Constants.MainPage, UriKind.Relative));
         }
 
-        private void SetUIElements()
+        private void SetUIElements(Recipe recipe)
         {
             PageName.Text = action;
-            RecipeName_TextBox.Text = string.IsNullOrEmpty(MainPage.SelectedRecipe.Name) ? "" : MainPage.SelectedRecipe.Name;
-            Cusine_Button.Content = string.IsNullOrEmpty(MainPage.SelectedRecipe.Cusine) ? "" : MainPage.SelectedRecipe.Cusine;
+            RecipeName_TextBox.Text = string.IsNullOrEmpty(recipe.Name) ? "" : recipe.Name;
+            Cusine_Button.Content = string.IsNullOrEmpty(recipe.Cusine) ? "" : recipe.Cusine;
             if (!navigateToDateSelector)
             {
-                CookDatePicker.Value = DateTime.MinValue.Equals(MainPage.SelectedRecipe.Date) ? DateTime.Today : MainPage.SelectedRecipe.Date;               
+                CookDatePicker.Value = DateTime.MinValue.Equals(recipe.Date) ? DateTime.Today : recipe.Date;               
             }
             navigateToDateSelector = false;
 
-            if (!string.IsNullOrEmpty(MainPage.SelectedRecipe.MealTime))
+            if (!string.IsNullOrEmpty(recipe.MealTime))
             {
-                MealListPicker.SelectedItem = MainPage.SelectedRecipe.MealTime;
+                MealListPicker.SelectedItem = recipe.MealTime;
             }
-            Comment_TextBox.Text = string.IsNullOrEmpty(MainPage.SelectedRecipe.Comments) ? "" : MainPage.SelectedRecipe.Comments;
-            IsFavorite_Checkbox.IsChecked = MainPage.SelectedRecipe.IsFavorite ? true : false;
+            Comment_TextBox.Text = string.IsNullOrEmpty(recipe.Comments) ? "" : recipe.Comments;
+            IsFavorite_Checkbox.IsChecked = recipe.IsFavorite ? true : false;
         }
 
         private void GetUIElements()

@@ -71,6 +71,10 @@ namespace What2Cook
         public const string CookCountParameter = "CookCount";
 
         public const string SuggestCountParameter = "SuggestCount";
+
+        // Parameters value
+        public const string EditRecipe = "Edit Recipe";
+        public const string AddRecipe = "Add Recipe";
         
         public class Timings
         {

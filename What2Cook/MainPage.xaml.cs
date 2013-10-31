@@ -14,6 +14,7 @@ namespace What2Cook
     public partial class MainPage : PhoneApplicationPage
     {
         public static Recipe SelectedRecipe;
+        public static string selectedRecipe;
 
         // Constructor
         public MainPage()
@@ -50,27 +51,48 @@ namespace What2Cook
             this.NavigationService.Navigate(new Uri(Constants.AddRecipePage + "?Action=Add Recipe", UriKind.Relative));
         }
 
-        private void RecipeList_tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void RecipeList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             this.NavigationService.Navigate(new Uri(string.Format("/RecipeDetailsPage.xaml?RecipeName={0}", ((TextBlock)e.OriginalSource).Text), UriKind.Relative));
         }
 
+        private void RecipeList_Hold(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            selectedRecipe = (string)((TextBlock)e.OriginalSource).Text;
+        }
+
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as MenuItem).DataContext as string;
+            var item = (sender as MenuItem).DataContext;
+           
             switch ((string)((MenuItem)sender).Header)
             {
                 case "delete recipe":
-                    var currRecipe = RecipeListSelector.SelectedItem as string;
-                    Recipes.DeleteRecipe(currRecipe);
+                    Recipes.DeleteRecipe(selectedRecipe);
+                    LoadRecipeList();
                     break;
-                case "edit recipe": 
-                    
+                
+                case "edit recipe":
+                    this.NavigationService.Navigate(new Uri(string.Format(Constants.AddRecipePage+"?Action=Edit Recipe&RecipeName={0}", selectedRecipe), UriKind.Relative));
                     break;
 
-                case "add to favorites": 
+                case "add to favorites":
+                    var recipe = Recipes.GetRecipe(selectedRecipe);
+                    recipe.IsFavorite = true;
+                    LoadRecipeList();
                     break;
             }
+        }
+
+        private void LoadRecipeList()
+        {
+            SortedDictionary<string, Recipe> RecipeList = Recipes.GetRecipeList();
+            List<String> stringsList = new List<string>();
+            foreach (var item in RecipeList.Keys)
+            {
+                stringsList.Add(item);
+            }
+            RecipeListSelector.ItemsSource = stringsList;            
         }
 
         // Sample code for building a localized ApplicationBar

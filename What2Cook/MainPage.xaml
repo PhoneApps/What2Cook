@@ -52,16 +52,16 @@
 
             <phone:PanoramaItem Header="Recipes" Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <toolkit:WrapPanel x:Name="wrapPanel" Orientation="Vertical">
-                    <phone:LongListSelector Name="RecipeListSelector" HorizontalAlignment="Left" Width="420" Margin="0,0,-320,-102" Tap="RecipeList_tap" ItemsSource="{Binding Items}">
-                            <toolkit:ContextMenuService.ContextMenu>
-                            <toolkit:ContextMenu>
-                                <!-- You can suppress tilt on indivudal menu items with TiltEffect.SuppressTilt="True" -->
-                                <toolkit:MenuItem Header="delete recipe" Click="MenuItem_Click"/>
-                                <toolkit:MenuItem Header="edit recipe" Click="MenuItem_Click"/>
-                                <toolkit:MenuItem Header="add to favorites" Click="MenuItem_Click"/>
-                            </toolkit:ContextMenu>
-                        </toolkit:ContextMenuService.ContextMenu>
+                    <phone:LongListSelector x:Name="RecipeListSelector" ItemsSource="{Binding}" HorizontalAlignment="Left" Width="420" Margin="0,0,-20,0" Tap="RecipeList_Tap" Hold="RecipeList_Hold">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu x:Name="CM" BorderThickness="0" BorderBrush="White"> 
+                                        <toolkit:MenuItem Header="delete recipe" Click="MenuItem_Click"/>
+                                        <toolkit:MenuItem Header="edit recipe" Click="MenuItem_Click"/>
+                                        <toolkit:MenuItem Header="add to favorites" Click="MenuItem_Click"/>
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                     </phone:LongListSelector>
+                    
                 </toolkit:WrapPanel>
 
             </phone:PanoramaItem>

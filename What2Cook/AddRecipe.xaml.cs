@@ -41,8 +41,15 @@ namespace What2Cook
             MealListPicker.Tap += MealListPicker_Tap;
             if (action == Constants.EditRecipe)
             {
-                recipe = Recipes.GetRecipe(selectedRecipe);
-                MainPage.SelectedRecipe = recipe;
+                if (MainPage.SelectedRecipe != null)
+                {
+                    recipe = MainPage.SelectedRecipe;
+                }
+                else
+                {
+                    recipe = Recipes.GetRecipe(selectedRecipe);
+                    MainPage.SelectedRecipe = recipe;
+                }
             }
             else if (action == Constants.AddRecipe && MainPage.SelectedRecipe != null)
             {
@@ -50,6 +57,7 @@ namespace What2Cook
             }
             else
             {
+                MainPage.SelectedRecipe = new Recipe();
                 recipe = MainPage.SelectedRecipe;
             }
             
@@ -98,12 +106,13 @@ namespace What2Cook
             {
                 XmlReaderWriter.UpdateRecipeFile(App.RecipeFile);
             }
-            
+            MainPage.SelectedRecipe = null;
             this.NavigationService.Navigate(new Uri(Constants.MainPage, UriKind.Relative));
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            MainPage.SelectedRecipe = null;
             this.NavigationService.Navigate(new Uri(Constants.MainPage, UriKind.Relative));
         }
 

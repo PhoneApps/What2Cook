@@ -14,7 +14,7 @@ namespace What2Cook
     public partial class MainPage : PhoneApplicationPage
     {
         public static Recipe SelectedRecipe;
-        public static string selectedRecipe;
+        public static string selectedRecipeName;
 
         // Constructor
         public MainPage()
@@ -58,7 +58,7 @@ namespace What2Cook
 
         private void RecipeList_Hold(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            selectedRecipe = (string)((TextBlock)e.OriginalSource).Text;
+            selectedRecipeName = (string)((TextBlock)e.OriginalSource).Text;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -68,16 +68,16 @@ namespace What2Cook
             switch ((string)((MenuItem)sender).Header)
             {
                 case "delete recipe":
-                    Recipes.DeleteRecipe(selectedRecipe);
+                    Recipes.DeleteRecipe(selectedRecipeName);
                     LoadRecipeList();
                     break;
                 
                 case "edit recipe":
-                    this.NavigationService.Navigate(new Uri(string.Format(Constants.AddRecipePage+"?Action=Edit Recipe&RecipeName={0}", selectedRecipe), UriKind.Relative));
+                    this.NavigationService.Navigate(new Uri(string.Format(Constants.AddRecipePage+"?Action=Edit Recipe&RecipeName={0}", selectedRecipeName), UriKind.Relative));
                     break;
 
                 case "add to favorites":
-                    var recipe = Recipes.GetRecipe(selectedRecipe);
+                    var recipe = Recipes.GetRecipe(selectedRecipeName);
                     recipe.IsFavorite = true;
                     LoadRecipeList();
                     break;
